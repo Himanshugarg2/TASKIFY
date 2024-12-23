@@ -6,21 +6,18 @@ import { useBrowser } from "./context/browsercontext";
 import Task from "./pages/Task/Task";
 
 function App() {
-  const [backgroundImage, setBackgroundImage] = useState(""); 
-  const { name, nameConfirmed, browserDispatch,Time } = useBrowser();
+  const [backgroundImage, setBackgroundImage] = useState("");
+  const { name, nameConfirmed, browserDispatch, Time } = useBrowser();
 
-  
   useEffect(() => {
-    const userName = localStorage.getItem("name") || ""; 
+    const userName = localStorage.getItem("name") || "";
     if (userName) {
       browserDispatch({ type: "NAME", payload: userName });
-      browserDispatch({ type: "CONFIRM_NAME" }); 
-      browserDispatch({ type: "Time" }); 
-
+      browserDispatch({ type: "CONFIRM_NAME" });
+      browserDispatch({ type: "Time" });
     }
   }, [browserDispatch]);
 
-  
   useEffect(() => {
     const index = Math.floor(Math.random() * images.length);
     setBackgroundImage(images[index].image);
@@ -30,6 +27,7 @@ function App() {
     <div
       className="App"
       style={{
+        position: "relative",
         height: "100vh",
         backgroundImage: `url(${backgroundImage})`,
         backgroundRepeat: "no-repeat",
@@ -37,7 +35,22 @@ function App() {
         backgroundPosition: "center center",
       }}
     >
-      {nameConfirmed ? <Task /> : <Homepage />}
+      {/* Semi-transparent overlay */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(0, 0, 0, 0.4)", // Adjust opacity here (0.4 for 40% opacity)
+          zIndex: 1,
+        }}
+      ></div>
+      {/* Content */}
+      <div style={{ position: "relative", zIndex: 2 }}>
+        {nameConfirmed ? <Task /> : <Homepage />}
+      </div>
     </div>
   );
 }

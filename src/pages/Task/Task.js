@@ -70,7 +70,15 @@ function Task() {
 
   const handleTaskSubmit = (event) => {
     event.preventDefault();
+    
     const taskInput = event.target.elements.taskInput;
+
+    // Ensure taskInput exists before accessing its value
+    if (!taskInput) {
+      console.error("Task input not found in form.");
+      return;
+    }
+
     if (taskInput.value.trim()) {
       browserDispatch({ type: "TASK", payload: taskInput.value });
       localStorage.setItem("task", taskInput.value);
@@ -80,7 +88,10 @@ function Task() {
 
   const handleTaskKeyDown = (event) => {
     if (event.key === "Enter" && event.target.value.trim() && name.trim()) {
-      handleTaskSubmit(event);
+      const form = event.target.closest("form"); // Ensure it targets the form
+      if (form) {
+        form.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+      }
     }
   };
 
