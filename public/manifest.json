@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "Taskify",
+  "author": "Himanshu Garg",
+  "version": "1.0",
+  "description": "A browser extension to enhance productivity by managing tasks with relaxing backgrounds.",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}
