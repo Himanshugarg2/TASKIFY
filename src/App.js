@@ -7,7 +7,7 @@ import Task from "./pages/Task/Task";
 
 function App() {
   const [backgroundImage, setBackgroundImage] = useState("");
-  const { name, nameConfirmed, browserDispatch, Time } = useBrowser();
+  const { nameConfirmed, browserDispatch } = useBrowser();
 
   useEffect(() => {
     const userName = localStorage.getItem("name") || "";

@@ -1,4 +1,3 @@
-import React from "react";
 
 function browserReducer(state, { type, payload }) {
   switch (type) {
