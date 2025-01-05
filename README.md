@@ -48,6 +48,6 @@
 5.  npm start
 
 
-About Taskify
+
 Taskify is designed to boost productivity by integrating task management seamlessly into your new tab experience. Start your day with focus and organization, all within your browser.
 
